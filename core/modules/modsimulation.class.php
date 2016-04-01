@@ -87,7 +87,10 @@ class modsimulation extends DolibarrModules
 		//							'dir' => array('output' => 'othermodulename'),      // To force the default directories names
 		//							'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'! empty($conf->module1->enabled) && ! empty($conf->module2->enabled)', 'picto'=>'yourpicto@simulation')) // Set here all workflow context managed by module
 		//                        );
-		$this->module_parts = array();
+		$this->module_parts = array(
+			'triggers'=>1
+			,'hooks'=>array('propalcard')
+		);
 
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/simulation/temp");
@@ -227,7 +230,7 @@ class modsimulation extends DolibarrModules
 			'titre'=>$langs->trans('Simulations_menu_titre_2'),
 			'mainmenu'=>'commercial',
 			'leftmenu'=>'',
-			'url'=>'/simulation/simulation.php?mainmenu=commercial',
+			'url'=>'/comm/propal.php?action=create&simulation=1&mainmenu=commercial',
 			'langs'=>'simulation@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>101,
 			'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
