@@ -5,3 +5,8 @@ ATMAbout = Ce module a été développé par <a href="http://www.atm-consulting.
 
 simulationSetup = Configuration du module simulation
 simulationAbout = A propos du module simulation
+
+
+Simulations_menu_titre_1=Simulations
+Simulations_menu_titre_2=Nouvelle simulation
+Simulations_menu_titre_3=Liste

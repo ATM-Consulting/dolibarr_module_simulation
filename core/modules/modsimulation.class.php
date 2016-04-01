@@ -105,6 +105,7 @@ class modsimulation extends DolibarrModules
 		$this->need_dolibarr_version = array(3,0);	// Minimum version of Dolibarr required by module
 		$this->langfiles = array("simulation@simulation");
 
+		$langs->load('simulation@simulation');
 		// Constants
 		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
 		// Example: $this->const=array(0=>array('MYMODULE_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
@@ -203,20 +204,54 @@ class modsimulation extends DolibarrModules
 		// $r++;
 		//
 		// Example to declare a Left Menu entry into an existing Top menu entry:
-		// $this->menu[$r]=array(	'fk_menu'=>'fk_mainmenu=xxx',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-		//							'type'=>'left',			                // This is a Left menu entry
-		//							'titre'=>'simulation left menu',
-		//							'mainmenu'=>'xxx',
-		//							'leftmenu'=>'simulation',
-		//							'url'=>'/simulation/pagelevel2.php',
-		//							'langs'=>'mylangfile@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-		//							'position'=>100,
-		//							'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-		//							'perms'=>'1',			                // Use 'perms'=>'$user->rights->simulation->level1->level2' if you want your menu with a permission rules
-		//							'target'=>'',
-		//							'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
-		// $r++;
+		$this->menu[$r]=array(	
+			'fk_menu'=>'fk_mainmenu=commercial',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'type'=>'left',			                // This is a Left menu entry
+			'titre'=>$langs->trans('Simulations_menu_titre_1'),
+			'mainmenu'=>'commercial',
+			'leftmenu'=>'simulation',
+			'url'=>'/simulation/list.php?mainmenu=commercial',
+			'langs'=>'simulation@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'position'=>100,
+			'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+			'perms'=>'1',			                // Use 'perms'=>'$user->rights->simulation->level1->level2' if you want your menu with a permission rules
+			'target'=>'',
+			'user'=>2								// 0=Menu for internal users, 1=external users, 2=both
+		);
+		$r++;
 
+
+		$this->menu[$r]=array(	
+			'fk_menu'=>'fk_mainmenu=commercial,fk_leftmenu=simulation',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'type'=>'left',			                // This is a Left menu entry
+			'titre'=>$langs->trans('Simulations_menu_titre_2'),
+			'mainmenu'=>'commercial',
+			'leftmenu'=>'',
+			'url'=>'/simulation/simulation.php?mainmenu=commercial',
+			'langs'=>'simulation@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'position'=>101,
+			'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+			'perms'=>'1',			                // Use 'perms'=>'$user->rights->simulation->level1->level2' if you want your menu with a permission rules
+			'target'=>'',
+			'user'=>2								// 0=Menu for internal users, 1=external users, 2=both
+		);
+		$r++;
+		
+		$this->menu[$r]=array(	
+			'fk_menu'=>'fk_mainmenu=commercial,fk_leftmenu=simulation',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'type'=>'left',			                // This is a Left menu entry
+			'titre'=>$langs->trans('Simulations_menu_titre_3'),
+			'mainmenu'=>'commercial',
+			'leftmenu'=>'',
+			'url'=>'/simulation/list.php?mainmenu=commercial',
+			'langs'=>'simulation@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'position'=>102,
+			'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+			'perms'=>'1',			                // Use 'perms'=>'$user->rights->simulation->level1->level2' if you want your menu with a permission rules
+			'target'=>'',
+			'user'=>2								// 0=Menu for internal users, 1=external users, 2=both
+		);
+		$r++;
 
 		// Exports
 		$r=1;
@@ -252,6 +287,15 @@ class modsimulation extends DolibarrModules
 
 		dol_include_once('/simulation/config.php');
 		dol_include_once('/simulation/script/create-maj-base.php');
+
+		dol_include_once('/core/class/extrafields.class.php');
+		
+		
+		$extra = new ExtraFields($this->db);
+		$extra->addExtraField('is_simulation', 'Simulation', 'select', 1, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:2:{i:0;s:3:"Non";i:1;s:3:"Oui";}}'));
+		$extra->addExtraField('default_nb_periode', 'Nombre de période par défaut', 'int', 2, 10, 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:1:{s:0:"";N;}}'));
+		$extra->addExtraField('periodicite', 'Périodicité', 'select', 3, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:3:{i:0;s:13:"trimestrielle";i:1;s:9:"mensuelle";i:2;s:8:"annuelle";}}'));
+		$extra->addExtraField('coefficient', 'Coefficient ( en % )', 'double', 4, '10,4', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:1:{s:0:"";N;}}'));
 
 		$result=$this->_load_tables('/simulation/sql/');
 
