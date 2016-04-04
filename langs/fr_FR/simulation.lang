@@ -10,12 +10,3 @@ simulationAbout = A propos du module simulation
 Simulations_menu_titre_1=Simulations
 Simulations_menu_titre_2=Nouvelle simulation
 Simulations_menu_titre_3=Liste
-
-
-Simulation_title_bloc_situation_actuelle=Situation Actuelle
-Simulation_title_bloc_solution_proposee=Solution Proposée
-Simulation_title_bloc_logiciel=Logiciels
-Simulation_title_bloc_livraison=Livraison
-Simulation_title_bloc_installation_parametrage=Installation / Paramétrage
-Simulation_title_bloc_cadeau=Cadeaux
-Simulation_title_bloc_participation_commerciale=Participation Commerciales

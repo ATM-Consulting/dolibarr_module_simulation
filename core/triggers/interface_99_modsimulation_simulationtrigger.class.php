@@ -116,42 +116,6 @@ class Interfacesimulationtrigger
         // Put here code you want to execute when a Dolibarr business events occurs.
         // Data and type of action are stored into $object and $action
         // Users
-        
-        if ($action == 'PROPAL_CREATE') {
-            dol_syslog("Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id);
-			
-			if ($conf->subtotal->enabled && !empty($object->array_options['options_is_simulation']))
-			{
-				$langs->load('simulation@simulation');
-				$langs->load('subtotal@subtotal');
-				
-				if (!defined('INC_FROM_DOLIBARR')) define('INC_FROM_DOLIBARR', true);
-				dol_include_once('/simulation/config.php');
-				dol_include_once('/subtotal/class/subtotal.class.php');
-				
-				// Titre : 1 <= qty => 9 || SousTotal : 91 <= qty => 99
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_situation_actuelle'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_solution_proposee'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_logiciel'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_livraison'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_installation_parametrage'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_cadeau'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-				
-				TSubtotal::addSubTotalLine($object, $langs->trans('Simulation_title_bloc_participation_commerciale'), 1);
-				TSubtotal::addSubTotalLine($object, $langs->trans('SubTotal'), 99);
-			}
-        }
 
         return 0;
     }

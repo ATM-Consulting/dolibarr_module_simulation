@@ -88,8 +88,7 @@ class modsimulation extends DolibarrModules
 		//							'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'! empty($conf->module1->enabled) && ! empty($conf->module2->enabled)', 'picto'=>'yourpicto@simulation')) // Set here all workflow context managed by module
 		//                        );
 		$this->module_parts = array(
-			'triggers'=>1
-			,'hooks'=>array('propalcard')
+			'hooks'=>array('propalcard')
 		);
 
 		// Data directories to create when module is enabled.
