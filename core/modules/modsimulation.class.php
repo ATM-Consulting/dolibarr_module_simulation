@@ -294,7 +294,8 @@ class modsimulation extends DolibarrModules
 		
 		
 		$extra = new ExtraFields($this->db);
-		$extra->addExtraField('is_simulation', 'Simulation', 'select', 1, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:2:{i:0;s:3:"Non";i:1;s:3:"Oui";}}'));
+		$extra->addExtraField('is_simulation', 'Simulation', 'select', 0, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:2:{i:0;s:3:"Non";i:1;s:3:"Oui";}}'));
+		$extra->addExtraField('fk_leaser', 'Leaser', 'sellist', 1, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:1:{s:45:"societe:nom:rowid::fournisseur=1 AND status=1";N;}}'));
 		$extra->addExtraField('default_nb_periode', 'Nombre de période par défaut', 'int', 2, 10, 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:1:{s:0:"";N;}}'));
 		$extra->addExtraField('periodicite', 'Périodicité', 'select', 3, '', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:3:{i:0;s:13:"trimestrielle";i:1;s:9:"mensuelle";i:2;s:8:"annuelle";}}'));
 		$extra->addExtraField('coefficient', 'Coefficient ( en % )', 'double', 4, '10,4', 'propal', 0, 0, '', unserialize('a:1:{s:7:"options";a:1:{s:0:"";N;}}'));
