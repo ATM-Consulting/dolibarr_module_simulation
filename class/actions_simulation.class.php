@@ -90,7 +90,7 @@ class Actionssimulation
 			print '
 			<script type="text/javascript">
 				$(function() {
-					var simulation_html_bt_create = $(\'<div class="inline-block divButAction"><a href="/client/bonneimpression/3.8/htdocs/comm/propal.php?socid=17&amp;action=create&simulation=1" class="butAction">Créer une simulation</a></div>\');
+					var simulation_html_bt_create = $(\'<div class="inline-block divButAction"><a href="'.dol_buildpath('/comm/propal.php?socid=17&amp;action=create&simulation=1', 1).'" class="butAction">Créer une simulation</a></div>\');
 														
 					$(".tabsAction").prepend(simulation_html_bt_create);
 				});
