@@ -75,6 +75,7 @@ class Actionssimulation
 				?>
 					<script type="text/javascript">
 						$(function() {
+							$('input[name=options_default_nb_periode]').val('21');
 							$('#options_is_simulation option[value=1]').prop('selected', true);
 						});
 					</script>
