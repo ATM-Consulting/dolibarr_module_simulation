@@ -229,7 +229,7 @@ class modsimulation extends DolibarrModules
 			'titre'=>$langs->trans('Simulations_menu_titre_2'),
 			'mainmenu'=>'commercial',
 			'leftmenu'=>'',
-			'url'=>'/comm/propal.php?action=create&simulation=1&mainmenu=commercial',
+			'url'=>'/comm/propal/card.php?action=create&simulation=1&mainmenu=commercial',
 			'langs'=>'simulation@simulation',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>101,
 			'enabled'=>'$conf->simulation->enabled',  // Define condition to show or hide menu entry. Use '$conf->simulation->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
